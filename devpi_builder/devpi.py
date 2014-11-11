@@ -3,15 +3,13 @@
 """
 Functionality for interacting with a devpi instance.
 """
+from __future__ import print_function
 
-import logging
 import shutil
 import subprocess
 import tempfile
 
 from wheel.install import WheelFile, BadWheelFile
-
-logger = logging.getLogger(__name__)
 
 
 class Client(object):
@@ -56,7 +54,7 @@ class Client(object):
             else:
                 raise e
 
-        logger.debug("looking for %s %s. Found %s", package, version, found)
+        print("looking for {} {}. Found {}".format(package, version, found))
         for item in found:
             try:
                 wheel_file = WheelFile(item)
