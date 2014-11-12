@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 
 from wheel.install import WheelFile, BadWheelFile
+from wheel.pep425tags import get_supported
 
 
 class Client(object):
@@ -54,7 +55,8 @@ class Client(object):
             else:
                 raise e
 
-        print("looking for {} {}. Found {}".format(package, version, found))
+        print("looking for {} {}. Found {}. Supported: {}".format(
+            package, version, found, get_supported()))
         for item in found:
             try:
                 wheel_file = WheelFile(item)
