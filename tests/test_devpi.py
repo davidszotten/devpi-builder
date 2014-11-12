@@ -47,6 +47,8 @@ class TestClient(unittest.TestCase):
     def test_upload_package_version(self):
         # note that this test requires a bundled wheel for each supported
         # python version
+        import sysconfig
+        print(sysconfig.get_config_vars())
         user = 'test'
         with devpi_server() as server_url, devpi_index(server_url, user, 'wheels') as (destination_index, password):
             with devpi.Client(server_url + '/test/wheels', user, password) as devpi_client:
