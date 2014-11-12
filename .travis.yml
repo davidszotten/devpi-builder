@@ -5,11 +5,11 @@ python:
   - "3.3"
   - "3.4"
 # command to install dependencies
-install: 
+install:
   - "pip install -r requirements.txt"
   - "pip install coveralls"
   - "pip freeze"
 # command to run tests
-script: nosetests
+script: nosetests -s
 
 after_success: coveralls
