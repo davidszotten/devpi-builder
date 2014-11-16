@@ -3,13 +3,14 @@
 """
 Functionality for interacting with a devpi instance.
 """
+from __future__ import print_function
 
+import shutil
 import subprocess
 import tempfile
-import shutil
-
 
 from wheel.install import WheelFile, BadWheelFile
+from wheel.pep425tags import get_supported
 
 
 class Client(object):
@@ -54,6 +55,8 @@ class Client(object):
             else:
                 raise e
 
+        print("looking for {} {}. Found {}. Supported: {}".format(
+            package, version, found, get_supported()))
         for item in found:
             try:
                 wheel_file = WheelFile(item)
